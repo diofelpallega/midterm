@@ -3,13 +3,13 @@ CREATE TABLE restaurantmenu(
     counter int primary key,
 	beverages text,
 	price text,
-	breakfast text,
+	morningspecial text,
 	price2 text,
-	lunch text,
+	lunchmode text,
 	price3 text,
-	dinner text,
+	dinnerlicious text,
 	price4 text,
-	dessert text,
+	dessertful text,
 	price5 text,
 	chipsandcrackers text,
 	price6 text
@@ -29,11 +29,11 @@ $$
          where counter = p_counter;
 	  
       if counter1 isnull then
-         insert into restaurantmenu(counter,beverages,price,breakfast,price2,lunch,price3,dinner,price4 ,dessert,price5,chipsandcrackers,price6) values
+         insert into restaurantmenu(counter,beverages,price,morningspecial,price2,lunchmode,price3,dinnerlicious,price4 ,dessertful,price5,chipsandcrackers,price6) values
             (p_counter,p_beverages,p_price,p_breakfast,p_price2 ,p_lunch,p_price3,p_dinner,p_price4,p_dessert,p_price5 ,p_chipsandcrackers,p_price6 );
      else
           update restaurantmenu
-			set counter = p_counter,beverages= p_beverages, breakfast = p_breakfast,lunch= p_lunch,dinner=p_dinner,dessert=p_dessert,chipsandcrackers=p_chipsandcrackers 
+			set counter = p_counter,beverages= p_beverages, morningspecial = p_breakfast,lunchmode= p_lunch,dinnerlicious=p_dinner,dessertful=p_dessert,chipsandcrackers=p_chipsandcrackers 
 			where counter = p_counter;
       end if;
 	  return 'OK';
@@ -48,7 +48,7 @@ create or replace function
    get_restaurantmenu_perid(in int,out text,out text,out text,out text,out text,out text,out text,out text,out text, out text, out text,out text)
 returns setof record as
 $$
-	select breakfast,price2,lunch,price3,dinner,price4 ,dessert,price5,chipsandcrackers,price6,beverages,price from restaurantmenu
+	select morningspecial,price2,lunchmode,price3,dinnerlicious,price4 ,dessertful,price5,chipsandcrackers,price6,beverages,price from restaurantmenu
 	where counter = $1;
 
 $$
